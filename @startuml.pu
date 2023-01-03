@@ -1,0 +1,73 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+class UKawaiiAssetDataModel {
+	+ImagePath : FDirectoryPath
+	+KawaiiData : TArray<FKawaiiStruct>
+	+LoadData() : void
+}
+
+
+class UKawaiiDataEntry {
+	+KawaiiData : FKawaiiStruct
+}
+
+
+class UKawaiiItemView {
+	#IconImage : UImage*
+	#IconName : UTextBlock*
+	#NativeOnListItemObjectSet(UObject* ListItemObject) : void
+}
+
+
+class UKawaiiListView {
+	-GetRandomDataFromAsset() : FKawaiiStruct
+	#KawaiiDataAssetPath : FSoftObjectPath
+	-KawaiiAssetData : TSoftObjectPtr<class UKawaiiAssetDataModel>
+	#ListView : UListView*
+	#NumOfImage : int
+	#NativeConstruct() : void
+}
+
+
+class FKawaiiStruct {
+	+FKawaiiStruct()
+	+FKawaiiStruct(const FName Name, const FSlateBrush Image)
+	+IconName : FName
+	+IconImage : FSlateBrush
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+
+
+
+/' Aggregation relationships '/
+
+.UKawaiiAssetDataModel *-- .FKawaiiStruct
+
+
+.UKawaiiDataEntry *-- .FKawaiiStruct
+
+
+.UKawaiiListView *-- .UKawaiiAssetDataModel
+
+
+
+
+
+
+/' Nested objects '/
+
+
+
+@enduml
